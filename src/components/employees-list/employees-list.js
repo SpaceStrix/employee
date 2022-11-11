@@ -11,7 +11,6 @@ const EmployeesList = ({ data, handleOnDelete, handleOnAddNewUser }) => {
         handleOnDelete={() => {
           handleOnDelete(item.id);
         }}
-        handleOnAddNewUser={handleOnAddNewUser}
       />
     );
   });

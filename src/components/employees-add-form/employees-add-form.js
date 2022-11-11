@@ -17,17 +17,25 @@ class EmployeesAddForm extends Component {
     });
   };
 
-  onSubmitForm = e => {
+  onSubmit = e => {
+    // отменяем дефолтное поведение формы
     e.preventDefault();
-    return this.state;
+    // передаем в коллбэк значения полей
+    this.props.handleOnAddNewUser(this.state.name, this.state.salary);
+    // очистка полей формы
+    this.setState({
+      name: "",
+      salary: "",
+    });
   };
 
   render() {
     const { name, salary } = this.state;
+
     return (
       <div className="app-add-form">
         <h3>Добавьте нового сотрудника</h3>
-        <form className="add-form d-flex" onSubmit={this.onSubmitForm}>
+        <form className="add-form d-flex" onSubmit={this.onSubmit}>
           <input
             type="text"
             name="name"

@@ -44,7 +44,22 @@ class App extends Component {
     });
   };
 
-  addNewUser = ({ name, salary }) => {};
+  addNewUser = (name, salary) => {
+    // получаем знгачения полей формы, создаем новый объект
+    const newItem = {
+      name,
+      salary,
+      increase: false,
+      key: "qwe",
+    };
+    // обновляем стейт лист, куда передаем новый объект и остаточным оператором старые элементы массива
+    this.setState(({ data }) => {
+      const newUser = [newItem, ...data];
+      return {
+        data: newUser,
+      };
+    });
+  };
 
   render() {
     return (
@@ -59,9 +74,8 @@ class App extends Component {
         <EmployeesList
           data={this.state.data}
           handleOnDelete={this.deleteItem}
-          handleOnAddNewUser={this.addNewUser}
         />
-        <EmployeesAddForm />
+        <EmployeesAddForm handleOnAddNewUser={this.addNewUser} />
       </div>
     );
   }
